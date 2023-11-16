@@ -15,7 +15,10 @@
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <!-- 워드 클라우드 라이브러리를 불러오기 -->
+        <script src="https://cdn.jsdelivr.net/npm/d3@7.3.0/dist/d3.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/d3-cloud@1.2.6/build/d3.layout.cloud.js"></script>
+    
     </head>
     <body>
         <!-- Navigation-->
@@ -170,17 +173,85 @@
 
 
                   break;
-                case 'money':
-                  contentDiv.innerHTML = 
-                  `
-        <h1>결제 분석 페이지</h1>
+                
+                  case 'money':
+    contentDiv.innerHTML = `
+        <!-- 결제 정보 표시 -->
+        <h2>결제 분석</h2>
+        <p>총 결제액: $1,000</p>
+        <p>사용처 및 금액:</p>
+        <ul>
+            <li>가게1: $300</li>
+            <li>가게2: $200</li>
+            <li>가게3: $150</li>
+            <li>가게4: $350</li>
+        </ul>
 
-                  `;
-                  break;
-                default:
+        <!-- 워드 클라우드 표시 -->
+        <h2>대표 키워드</h2>
+        <div id="wordCloud"></div>
+    `;
+
+    // 워드 클라우드 데이터 생성 (임시 데이터)
+    const wordCloudData = [
+        { text: '식비', size: 20 },
+        { text: '쇼핑', size: 16 },
+        { text: '문화생활', size: 25 },
+        { text: '교통', size: 18 },
+        { text: '기타', size: 22 },
+    ];
+
+    // 생성한 데이터로 워드 클라우드 생성
+    generateWordCloud(wordCloudData);
+    break;
+
+             default:
                   break;
               }
             }
           </script>
-    </body>
+
+<script>
+    // Move this outside the template literal
+// 워드 클라우드 생성 함수
+function generateWordCloud(data) {
+    const width = 800;
+    const height = 400;
+
+    const svg = d3.select('#wordCloud')
+        .append('svg')
+        .attr('width', width)
+        .attr('height', height);
+
+    const layout = d3.layout.cloud()
+        .size([width, height])
+        .words(data)
+        .padding(5)
+        .rotate(() => (Math.random() - 0.5) * 30)
+        .fontSize(d => d.size)
+        .on('end', draw);
+
+    layout.start();
+
+    function draw(words) {
+        svg.append('g')
+            .attr('transform', `translate(${width / 2},${height / 2})`)
+            .selectAll('text')
+            .data(words)
+            .enter()
+            .append('text')
+            .style('font-size', d => `${d.size}px`)
+            .style('fill', 'blue')
+            .attr('text-anchor', 'middle')
+            .attr('transform', d => `translate(${d.x},${d.y}) rotate(${d.rotate})`)
+            .text(d => d.text);
+    }
+}
+
+</script>
+<!-- Add these script tags in the head of your HTML file -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-cloud@1.2.6/build/d3.layout.cloud.js"></script>
+
+</body>
 </html>
