@@ -1,29 +1,46 @@
-const navbaridea =
-`
+const navbaridea = `
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #71b6bd;">
-    <div class="container px-4 px-lg-5">
-        <div style="font-weight: bold;"> 
-        <h3>Covel</h3>
+    <div class="container ">
+        <div>
+            <a href="./body.html">
+                <img src="./src/home.png" alt="Home" width="100" height="50">
+            </a>
         </div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="./body.html">Home</a></li>
-                
-                <li class="nav-item"><a class="nav-link" href="./mypage.html">mypage</a></li>
-                <li class="nav-item"><a class="nav-link" href="./search.html">search</a></li>
-               
-            </ul>
-        
-            <form class="d-flex">
-                <!--btn -> 인간 동글뱅이로 바꿔죠....-->
-                <a class="navbar-brand" href="./mypage/login.html">Login</a>
-                <a class="navbar-brand" href="./mypage/register.html">회원가입</a>
 
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start" style="margin-right: 10px;">
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" style="text-align: left;">
+        <!-- Search Form -->
+        <li class="nav-item" style="float: right;">
+            <form class="d-flex" style="align-items: center;">
+                <input class="form-control me-2" type="search" placeholder="🔎" aria-label="Search" list="search-results" style="text-align: left;">
+                <datalist id="search-results">
+                    <!-- Add your data list options here -->
+                    <option value="Option 1">
+                    <option value="Option 2">
+                    <option value="Option 3">
+                </datalist>
             </form>
-        </div>
+        </li>
+    </ul>
+            <form class="d-flex">
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+                        <i class="fas fa-user fa-fw"></i>
+                        
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">Settings</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="./mypage/login.html">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </form>
+        </div>    
     </div>
 </nav>
 `;
